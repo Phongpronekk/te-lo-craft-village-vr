@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bản đồ làng nghề ô tô Tề Lỗ</title>
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;font-family:"Segoe UI",Roboto,Arial,sans-serif;background:#16324a;color:#fff}
+.wrap{display:flex;flex-direction:column;height:100%;padding:10px;gap:8px}
+h1{font-size:16px;font-weight:700;letter-spacing:.3px}
+h1 small{display:block;font-weight:400;font-size:12px;opacity:.75;margin-top:2px}
+.main{flex:1;display:flex;gap:10px;min-height:0}
+.map{flex:1;min-width:0;border-radius:12px;overflow:hidden;background:#dfe9c8;box-shadow:0 4px 18px rgba(0,0,0,.35)}
+svg{width:100%;height:100%;display:block}
+.list{width:210px;overflow:auto;display:flex;flex-direction:column;gap:5px}
+.item{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:6px 8px;font-size:12.5px;cursor:pointer;color:#fff;text-align:left}
+.item:hover,.item.on{background:#ffb703;color:#16324a}
+.item b{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;color:#fff}
+.pin{cursor:pointer}
+.pin .body{transition:transform .15s;transform-origin:0 0}
+.pin:hover .body,.pin.on .body{transform:scale(1.25)}
+.pin .lbl{opacity:0;transition:opacity .15s;pointer-events:none}
+.pin:hover .lbl,.pin.on .lbl{opacity:1}
+.pulse{animation:p 1.8s infinite;transform-origin:center;transform-box:fill-box}
+@keyframes p{0%{opacity:.6;transform:scale(.5)}100%{opacity:0;transform:scale(2.2)}}
+.toast{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);background:#ffb703;color:#16324a;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:600;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+.pin.cur .body{transform:scale(1.25)}
+.pin.cur .lbl{opacity:1}
+body.embed h1,body.embed .list{display:none}
+body.embed .wrap{padding:0;gap:0}
+body.embed .map{border-radius:0;box-shadow:none}
+body.embed .toast{display:none}
+@media(max-width:640px){.main{flex-direction:column}.list{width:100%;flex-direction:row;flex:none;padding-bottom:2px}.item{flex:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>BẢN ĐỒ HÀNH TRÌNH – LÀNG NGHỀ Ô TÔ TỀ LỖ<small>Chạm vào pin để chuyển đến cảnh VR 360 tương ứng (minh họa không theo tỉ lệ)</small></h1>
+  <div class="main">
+    <div class="map">
+      <svg id="svg" viewBox="0 0 1067 600" preserveAspectRatio="xMidYMid meet">
+        <defs><filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity=".4"/></filter></defs>
+        <rect width="1067" height="600" fill="#dfe9c8"/>
+        <rect x="600" y="20" width="440" height="165" rx="14" fill="#c5dc9a"/>
+        <text x="820" y="108" text-anchor="middle" fill="#6b8f3a" font-size="14" font-style="italic">Cánh đồng</text>
+        <path d="M0,0 L120,0 C95,100 75,200 62,300 C50,400 40,500 0,580 Z" fill="#7fc4e8"/>
+        <text x="34" y="300" fill="#2a6f97" font-size="15" font-weight="700" transform="rotate(-80 34 300)">Sông Phan</text>
+        <g opacity=".9">
+          <rect x="150" y="40" width="110" height="110" rx="4" fill="#c9a98b"/><rect x="330" y="40" width="90" height="110" rx="4" fill="#a9b8c9"/>
+          <rect x="440" y="50" width="100" height="100" rx="4" fill="#d98e73"/><rect x="600" y="40" width="0" height="0"/>
+          <rect x="150" y="225" width="125" height="80" rx="4" fill="#a9b8c9"/><rect x="335" y="225" width="200" height="90" rx="4" fill="#c9a98b"/>
+          <rect x="150" y="360" width="200" height="90" rx="4" fill="#d98e73"/><rect x="380" y="360" width="150" height="90" rx="4" fill="#a9b8c9"/>
+          <rect x="150" y="480" width="380" height="90" rx="4" fill="#c9a98b"/>
+          <rect x="595" y="215" width="130" height="90" rx="4" fill="#d98e73"/><rect x="745" y="215" width="140" height="90" rx="4" fill="#a9b8c9"/>
+          <rect x="595" y="368" width="130" height="85" rx="4" fill="#c9a98b"/><rect x="745" y="368" width="130" height="85" rx="4" fill="#d98e73"/>
+          <rect x="595" y="485" width="130" height="85" rx="4" fill="#a9b8c9"/><rect x="745" y="485" width="130" height="85" rx="4" fill="#c9a98b"/>
+          <rect x="925" y="365" width="120" height="100" rx="4" fill="#a9b8c9"/><rect x="925" y="490" width="120" height="80" rx="4" fill="#d98e73"/>
+          <rect x="925" y="215" width="110" height="90" rx="4" fill="#c9a98b"/>
+        </g>
+        <g fill="none" stroke-linejoin="round" stroke-linecap="round">
+          <path id="route" d="M302,20 L302,300 M130,196 L565,196 L565,338 L897,338 L897,590" stroke="#5b6573" stroke-width="22"/>
+          <path d="M302,20 L302,300 M130,196 L565,196 L565,338 L897,338 L897,590" stroke="#fff" stroke-width="2" stroke-dasharray="10 10"/>
+        </g>
+        <text x="318" y="60" fill="#5b6573" font-size="12" font-weight="600">Trục Bắc – Nam</text>
+        <g transform="translate(1000,60)"><circle r="24" fill="#fff" opacity=".9"/><path d="M0,-19 L7,4 L0,0 L-7,4Z" fill="#e63946"/><text y="19" text-anchor="middle" font-size="10" font-weight="700" fill="#16324a">B</text></g>
+        <g id="pins"></g>
+      </svg>
+    </div>
+    <div class="list" id="list"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ CẤU HÌNH ============ */
+var TOUR_URL = "https://tour.panoee.net/6adf3c5bb2f1e779555b4e30";
+/* Dán link riêng của từng scene vào "url" (nếu để trống sẽ mở tour từ đầu).
+   "sceneId" dùng cho postMessage nếu bạn có hàm nhận lệnh ở trang cha. */
+var SCENES = [
+ {n:1,name:"Ngã tư làng ô Tề Lỗ",         x:302,y:196,c:"#e63946",url:"",sceneId:""},
+ {n:2,name:"Bãi tập kết nhựa xe cộ",   x:302,y:262,c:"#8338ec",url:"",sceneId:""},
+ {n:3,name:"Bãi máy công trình",       x:215,y:196,c:"#fb8500",url:"",sceneId:""},
+ {n:4,name:"Khu kinh doanh máy công trình",x:500,y:196,c:"#2a9d8f",url:"",sceneId:""},
+ {n:5,name:"Dọc tuyến đường máy công trình",x:565,y:268,c:"#f4a261",url:"",sceneId:""},
+ {n:6,name:"Bãi ô tô cũ",              x:700,y:338,c:"#264653",url:"",sceneId:""},
+ {n:7,name:"Khu tập kết chất thải",    x:830,y:338,c:"#6a994e",url:"",sceneId:""},
+ {n:8,name:"Bãi đầu cabin xe tải",     x:897,y:450,c:"#1d70b8",url:"",sceneId:""},
+ {n:9,name:"Không gian sống trong xưởng",x:897,y:535,c:"#b5179e",url:"",sceneId:""}
+];
+/* ================================== */
+if(window.parent!==window)document.body.classList.add("embed");
+var NS="http://www.w3.org/2000/svg",pins=document.getElementById("pins"),list=document.getElementById("list"),toast=document.getElementById("toast");
+
+function go(s){
+  toast.textContent="Đang chuyển đến: "+s.name;toast.classList.add("show");
+  setTimeout(function(){toast.classList.remove("show")},1800);
+  document.querySelectorAll(".pin").forEach(function(p){p.classList.toggle("cur",p.getAttribute("data-n")==s.n)});
+  /* Đang nhúng trong tour: chỉ gửi lệnh chuyển cảnh cho trang cha, KHÔNG tải lại trang */
+  if(window.parent!==window){
+    try{window.parent.postMessage({type:"goto-scene",scene:s.n,sceneId:s.sceneId,name:s.name},"*")}catch(e){}
+    return;
+  }
+  var u=s.url||TOUR_URL;
+  try{window.top.location.href=u}catch(e){window.open(u,"_top")}
+}
+function mark(n,on){
+  document.querySelectorAll('[data-n="'+n+'"]').forEach(function(e){e.classList.toggle("on",on)});
+}
+SCENES.forEach(function(s){
+  var g=document.createElementNS(NS,"g");
+  g.setAttribute("class","pin");g.setAttribute("data-n",s.n);
+  g.setAttribute("transform","translate("+s.x+","+s.y+")");
+  var w=s.name.length*6.6+18;
+  g.innerHTML=
+   '<circle class="pulse" r="14" fill="'+s.c+'"/>'+
+   '<g class="body" filter="url(#sh)"><path d="M0,0 C-18,-20 -17,-40 0,-40 C17,-40 18,-20 0,0Z" transform="translate(0,0)" fill="'+s.c+'" stroke="#fff" stroke-width="2.5"/>'+
+   '<circle cy="-27" r="9" fill="#fff"/><text y="-23" text-anchor="middle" font-size="12" font-weight="800" fill="'+s.c+'">'+s.n+'</text></g>'+
+   '<g class="lbl"><rect x="'+(-w/2)+'" y="-76" width="'+w+'" height="24" rx="12" fill="#16324a"/>'+
+   '<text y="-60" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">'+s.name+'</text></g>';
+  g.addEventListener("click",function(){go(s)});
+  g.addEventListener("mouseenter",function(){mark(s.n,true)});
+  g.addEventListener("mouseleave",function(){mark(s.n,false)});
+  pins.appendChild(g);
+
+  var b=document.createElement("button");
+  b.className="item";b.setAttribute("data-n",s.n);
+  b.innerHTML='<b style="background:'+s.c+'">'+s.n+'</b>'+s.name;
+  b.onclick=function(){go(s)};
+  b.onmouseenter=function(){mark(s.n,true)};
+  b.onmouseleave=function(){mark(s.n,false)};
+  list.appendChild(b);
+});
+</script>
+</body>
+</html>
