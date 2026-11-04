@@ -1,6 +1,12 @@
-# Bản đồ làng nghề Tê Lỗ
+# Bản đồ làng nghề Tề Lỗ
 
 Bản xuất tĩnh của website giới thiệu làng nghề, gồm trang chủ (`index.html`) và bản đồ tham quan (`ban-do-te-lo.html`).
+
+## Giới thiệu làng nghề Tề Lỗ
+
+Tề Lỗ, thuộc huyện Yên Lạc, tỉnh Vĩnh Phúc trước đây, được biết đến với nghề thu mua, tháo dỡ ô tô cũ và kinh doanh máy công trình đã qua sử dụng. Tại các bãi xe và xưởng tháo dỡ, người thợ phân loại linh kiện còn dùng được để bán lại cho các cơ sở sửa chữa. [Nguồn: Báo Tin tức](https://baotintuc.vn/bao-dong-o-nhiem-lang-nghe-o-vinh-phuc-n20191209110000892.htm)
+
+Bản đồ trong dự án giới thiệu các không gian gắn với nghề, từ bãi ô tô cũ và khu kinh doanh máy công trình đến nơi tập kết vật liệu và không gian sinh hoạt trong xưởng.
 
 ## Chạy dự án trên máy
 
